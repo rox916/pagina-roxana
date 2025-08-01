@@ -1,59 +1,44 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Animación de pulso para corazones */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
 }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #ffe6f0, #ffe0e6);
-  color: #333;
-  padding: 20px;
-  text-align: center;
+.corazones {
+  animation: pulse 3s ease-in-out infinite;
 }
 
-header {
-  background-color: #ffb6c1;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+/* Transición de color en los poemas */
+.poema p {
+  transition: color 1.5s ease;
 }
 
-h1 {
-  color: #fff;
+.poema p:hover {
+  color: #c2185b;
 }
 
-.carta {
-  background-color: #fff0f5;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 600px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+/* Botón romántico suavemente animado */
+button {
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-.galeria {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
+button:hover {
+  transform: scale(1.1);
 }
 
-.galeria img {
-  width: 200px;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
+/* Aparición suave del encabezado */
+header, .poema, .interactivo {
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards;
 }
 
-.galeria img:hover {
-  transform: scale(1.05);
+header { animation-delay: 0.5s; }
+.poema { animation-delay: 1s; }
+.interactivo { animation-delay: 1.5s; }
+
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
 
-footer {
-  margin-top: 40px;
-  font-size: 14px;
-  color: #555;
-}
+
