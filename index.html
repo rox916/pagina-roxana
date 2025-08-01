@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rincón Romántico de Bethy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Música de fondo (opcional) -->
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <header>
+    <h1>🌹 Bienvenidos a mi rincón romántico 🌹</h1>
+    <p>Un espacio lleno de amor, dulzura y palabras que acarician el alma.</p>
+  </header>
+
+  <section class="poema">
+    <h2>💌 Poema del Corazón 💌</h2>
+    <p>
+      En la brisa suave te pienso,<br>
+      en la luna clara te sueño,<br>
+      y en cada latido sincero,<br>
+      siento que te quiero.
+    </p>
+  </section>
+
+  <div class="corazones">❤️ 💕 💖 💘 💝</div>
+
+  <section class="interactivo">
+    <p id="fraseRomantica">Pasa el mouse sobre mí para leer algo lindo 💕</p>
+    <button onclick="mostrarMensaje()">Haz clic para un detalle 💌</button>
+  </section>
+
+  <footer>
+    Hecho con amor por Bethy 💕<br />
+    &copy; 2025 - Todos los derechos reservados
+  </footer>
+
+  <script>
+    // Cambia la frase al pasar el mouse
+    const frase = document.getElementById("fraseRomantica");
+    frase.addEventListener("mouseover", () => {
+      frase.innerText = "Tu sonrisa ilumina mis días ✨";
+    });
+    frase.addEventListener("mouseout", () => {
+      frase.innerText = "Pasa el mouse sobre mí para leer algo lindo 💕";
+    });
+
+    // Muestra un mensaje al hacer clic
+    function mostrarMensaje() {
+      alert("Eres una persona maravillosa. Nunca lo olvides. 💖");
+    }
+  </script>
+
+</body>
+</html>
