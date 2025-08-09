@@ -1,44 +1,388 @@
-/* Animación de pulso para corazones */
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.8; }
+:root {
+  --deep-blue: #0a1f4d;
+  --medium-blue: #1a3a8f;
+  --light-blue: #4d79ff;
+  --soft-pink: #ff9bb3;
+  --gold: #ffd700;
+  --text-light: #e6f0ff;
+  --green: #4CAF50;
+  --purple: #9c27b0;
+  --orange: #ff9800;
+  --red: #f44336;
 }
 
-.corazones {
-  animation: pulse 3s ease-in-out infinite;
+/* Estilos Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Transición de color en los poemas */
-.poema p {
-  transition: color 1.5s ease;
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--deep-blue);
+  color: var(--text-light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-image: 
+    linear-gradient(to bottom, #00000080, #00000000 30%),
+    radial-gradient(circle at 20% 30%, var(--light-blue) 0%, transparent 25%),
+    radial-gradient(circle at 80% 70%, var(--soft-pink) 0%, transparent 25%);
 }
 
-.poema p:hover {
-  color: #c2185b;
+.container {
+  width: 100%;
+  max-width: 800px;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-/* Botón romántico suavemente animado */
-button {
-  transition: background-color 0.3s, transform 0.3s;
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-button:hover {
-  transform: scale(1.1);
+/* Selector de Modos */
+.mode-selector {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+  width: 100%;
 }
 
-/* Aparición suave del encabezado */
-header, .poema, .interactivo {
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards;
+.mode-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.95rem;
+  min-width: 120px;
 }
 
-header { animation-delay: 0.5s; }
-.poema { animation-delay: 1s; }
-.interactivo { animation-delay: 1.5s; }
-
-@keyframes fadeIn {
-  to { opacity: 1; }
+.mode-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+.mode-btn.active {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
 
+/* Área de Contenido */
+.content-area {
+  position: relative;
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Tarjeta de Motivación */
+.motivation-card {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(10, 31, 77, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  border: 1px solid var(--light-blue);
+  box-shadow: 0 0 30px rgba(77, 121, 255, 0.2);
+  margin-bottom: 20px;
+}
+
+.message-header {
+  margin-bottom: 20px;
+}
+
+.motivation-card h2 {
+  color: var(--gold);
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.motivation-card p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.signature {
+  font-style: italic;
+  color: var(--soft-pink);
+  margin-bottom: 15px;
+}
+
+/* Controles del Mensaje */
+.message-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-next {
+  background: linear-gradient(135deg, var(--light-blue), var(--soft-pink));
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.btn-next:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(77, 121, 255, 0.5);
+}
+
+/* Diario Emocional */
+.journal-container {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(10, 31, 77, 0.8);
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid var(--soft-pink);
+  margin-bottom: 20px;
+  display: none; /* Oculto por defecto */
+}
+
+.journal-container h2 {
+  color: var(--soft-pink);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#journal-entry {
+  width: 100%;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--light-blue);
+  border-radius: 10px;
+  padding: 15px;
+  color: white;
+  margin-bottom: 15px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.journal-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.journal-buttons button {
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(135deg, var(--purple), var(--soft-pink));
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  min-width: 120px;
+}
+
+.journal-buttons button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Efectos Visuales */
+.visual-effect {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.sad-effect {
+  background: radial-gradient(circle at center, var(--light-blue), transparent 70%);
+}
+
+.unloved-effect {
+  background: radial-gradient(circle at center, var(--soft-pink), transparent 70%);
+}
+
+.giving-effect {
+  background: radial-gradient(circle at center, var(--orange), transparent 70%);
+}
+
+.doubt-effect {
+  background: radial-gradient(circle at center, var(--gold), transparent 70%);
+}
+
+.stress-effect {
+  background: radial-gradient(circle at center, var(--green), transparent 70%);
+}
+
+/* Modos de Color para Botones */
+.mode-btn.sad {
+  background: linear-gradient(135deg, var(--light-blue), var(--medium-blue));
+}
+
+.mode-btn.unloved {
+  background: linear-gradient(135deg, var(--soft-pink), var(--purple));
+}
+
+.mode-btn.giving-up {
+  background: linear-gradient(135deg, var(--orange), #ff5722);
+}
+
+.mode-btn.doubt {
+  background: linear-gradient(135deg, var(--gold), #ffc107);
+}
+
+.mode-btn.stress {
+  background: linear-gradient(135deg, var(--green), #2E7D32);
+}
+
+/* Clases Utilitarias */
+.hidden {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
+}
+
+/* ========= RESPONSIVE ========= */
+/* Tablets (768px o menos) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .mode-btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    min-width: 110px;
+  }
+  
+  .motivation-card, .journal-container {
+    padding: 20px;
+  }
+  
+  .btn-next {
+    padding: 10px 20px;
+  }
+}
+
+/* Móviles (480px o menos) */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+    justify-content: flex-start;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .mode-selector {
+    gap: 8px;
+  }
+  
+  .mode-btn {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    min-width: calc(50% - 10px);
+    flex: 1 0 calc(50% - 10px);
+  }
+  
+  .motivation-card h2 {
+    font-size: 1.3rem;
+  }
+  
+  .motivation-card p {
+    font-size: 1rem;
+  }
+  
+  .journal-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .journal-buttons button {
+    width: 100%;
+  }
+  
+  .visual-effect {
+    display: none; /* Mejor rendimiento en móviles */
+  }
+}
+
+/* Pantallas muy pequeñas (360px o menos) */
+@media (max-width: 360px) {
+  .mode-btn {
+    min-width: 100%;
+    flex: 1 0 100%;
+    margin-bottom: 5px;
+  }
+  
+  .container {
+    padding: 5px;
+  }
+  
+  #journal-entry {
+    height: 120px;
+    padding: 10px;
+  }
+}
+
+/* Mejoras para interacción táctil */
+@media (hover: none) {
+  .mode-btn, .btn-next, .journal-buttons button {
+    padding: 14px 20px;
+    min-height: 48px;
+  }
+  
+  .mode-btn {
+    font-size: 0.9rem;
+  }
+  
+  #journal-entry {
+    font-size: 16px;
+  }
+}
+
+/* Efectos de feedback para móviles */
+.tap-feedback:active {
+  transform: scale(0.95) !important;
+  opacity: 0.8;
+}

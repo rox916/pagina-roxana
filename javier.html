@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Tu Refugio Javi</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Tu Refugio Motivacional Bebito</h1>
+    
+    <div class="mode-selector">
+      <button class="mode-btn sad" data-mode="sad">Si te sientes triste</button>
+      <button class="mode-btn unloved" data-mode="unloved">Si te sientes poco amado</button>
+      <button class="mode-btn giving-up" data-mode="giving">Si quieres rendirte</button>
+      <button class="mode-btn doubt" data-mode="doubt">Si tienes dudas</button>
+      <button class="mode-btn stress" data-mode="stress">Si estás estresado</button>
+      <button class="mode-btn" id="journal-toggle">Abrir Diario</button>
+    </div>
+    
+    <div class="content-area">
+      <div class="visual-effect hidden" id="visual-effect"></div>
+      
+      <div class="motivation-card" id="motivation-card">
+        <div class="message-header">
+          <h2 id="card-title">Título del mensaje</h2>
+        </div>
+        <p id="card-message">Mensaje motivacional aparecerá aquí...</p>
+        <p class="signature">- Roxy -</p>
+        
+        <div class="message-footer">
+          <div class="message-controls">
+            <button class="btn-next" id="btn-next">Siguiente mensaje</button>
+          </div>
+        
+          <div class="message-response hidden" id="message-response">
+            <textarea placeholder="¿Qué te inspira este mensaje?"></textarea>
+            <button class="btn-save-response">Guardar reflexión</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="journal-container hidden" id="journal-container">
+        <h2>Diario de Emociones</h2>
+        <textarea id="journal-entry" placeholder="¿Cómo te sientes hoy, Javier? Escribe libremente..."></textarea>
+        <div class="journal-buttons">
+          <button id="save-entry">Guardar</button>
+          <button id="analyze-entry">Analizar mi estado</button>
+          <button class="back-to-motivation">Volver</button>
+        </div>
+        <div class="journal-history hidden" id="journal-history">
+          <h3>Entradas anteriores</h3>
+          <div id="entries-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="javier.js"></script>
+</body>
+</html>
